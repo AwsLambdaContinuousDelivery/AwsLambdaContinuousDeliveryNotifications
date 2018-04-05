@@ -61,9 +61,9 @@ def addFailureNotifications( t: Template
 
     Before calling this function the user must create a `troposphere.sns.Topic` on which the notifications should be published.
     '''
-    if topicPolicy:
+    if createTopicPolicy:
         topicPolicy = getTopicPolicy([topic])
-        template.add_resource(topicPolicy)
+        t.add_resource(topicPolicy)
     topic_ = t.add_resource(topic)
     transformer = InputTransformer(
           InputPathsMap = { "pipeline" : "$.detail.pipeline" }
